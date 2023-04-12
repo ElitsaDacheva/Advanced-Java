@@ -1,0 +1,38 @@
+package AdvancedLab;
+
+import java.util.ArrayDeque;
+import java.util.Scanner;
+
+public class BrowserHistory {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner (System.in);
+
+        ArrayDeque <String> history = new ArrayDeque<>();
+        String current = null;
+
+        String navigation = scanner.nextLine();
+        while (!"Home".equals(navigation)){
+            boolean hasPrevUrls = false;
+
+            if (navigation.equals("back")){
+                if (!history.isEmpty()){
+                     current = history.pop();
+                }else{
+                    System.out.println("no previous URLs");
+                    hasPrevUrls = true;
+                }
+
+            } else {
+                if (current != null ){
+                    history.push(current);
+                }
+                current = navigation;
+            }
+            if (!hasPrevUrls) {
+                System.out.println(current);
+            }
+
+            navigation = scanner.nextLine();
+        }
+    }
+}
