@@ -1,0 +1,49 @@
+package Collection;
+import java.util.Iterator;
+import java.util.List;
+
+public class ListyIterator implements Iterable<String>{
+    private List<String> elements;
+    private int index;
+    public ListyIterator(String... elements) {
+        this.elements = List.of(elements);
+        index = 0;
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return new Iterator<String>() {
+            private int index;
+            @Override
+            public boolean hasNext() {
+                return index < elements.size();
+            }
+            @Override
+            public String next() {
+                String element = elements.get(index);
+                index++;
+                return element;
+            }
+        };
+    }
+    public void Print (){
+        if (elements.isEmpty()){
+            throw new IllegalStateException("Invalid Operation!");
+        }
+        System.out.println(this.elements.get(index));
+    }
+    public void PrintAll(){
+        System.out.println(String.join(" ", elements));
+    }
+    public boolean HasNext (){
+        return index < elements.size() - 1;
+    }
+    public boolean Move (){
+        if (HasNext()){
+            index++;
+            return true;
+        }else {
+            return false;
+        }
+    }
+}
