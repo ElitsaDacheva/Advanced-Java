@@ -1,0 +1,21 @@
+package AdvancedExercise.Generics.GenericBox;
+
+import java.util.ArrayList;
+import java.util.List;
+public class GenericsBox <T extends Comparable> implements Comparable<GenericsBox<T>> {
+    private T data;
+
+    public GenericsBox(T data) {
+        this.data = data;
+    }
+
+    @Override
+    public String toString () {
+        return String.format("%s: %s", this.data.getClass().getName(), this.data);
+    }
+
+    @Override
+    public int compareTo(GenericsBox<T> o) {
+        return this.data.compareTo(o.data);
+    }
+}
